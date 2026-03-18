@@ -42,7 +42,7 @@ const int buzzPin = 33;
 int distance = 0;
 //Set the min and max input values that will be received via OOCSI
 int minDistance = 0;      
-int maxDistance = 3000;
+int maxDistance = 1500;
 
 //Setting up variables used in the code. These do not need to be changed
 const int pwmChannel = 0;
@@ -77,7 +77,7 @@ void loop() {
 
   //plot against a curve so time between buzzes gets more noticably shorter
   float normalised = (float)(distance - minDistance) / (maxDistance - minDistance);
-  frequency = 100 + (normalised * normalised * 2000);       //change the two number values to adjust the rate the buzz frequency changes
+  frequency = 100 + (normalised * normalised * 500);       //change the two number values to adjust the rate the buzz frequency changes
 
   //update millis 
   unsigned long currentMillis = millis();
@@ -87,7 +87,7 @@ void loop() {
     previousBuzz = currentMillis;
     
     //short buzz and then pause   
-    ledcWrite(buzzPin, 255);  
+    ledcWrite(buzzPin, 200);  
     delay(50);
     ledcWrite(buzzPin, 0);  
 
